@@ -118,26 +118,25 @@ max-width: 1400px;
 .hero-title {
      font-family: 'Satoshi', 'Open Sans', sans-serif;
     font-weight: 900;
-    font-size: 84px;
+    font-size: 94px;
     line-height: 1.05;
     color: white;
     margin-bottom: 35px;
     width: 1346px;
-    text-transform: uppercase;
-}
-
+    text-transform: uppercase;}
 .hero-subtitle {
-  font-size: 40px;
-  font-weight: 300;
-  color: #d5dfe2;
-  margin-top: 10px;
+font-size: 40px;
+    font-weight: 300;
+    color: #d5dfe2;
+    margin-top: 10px;
 }
 
 /* RIGHT SIDE ASIDE */
 .hero-aside {
-     width: 577px;
+     width: 593px;
     text-align: right;
-    margin-top: -116px; /* pushes text down like reference */
+       margin-top: 0px;
+    margin-right: 79px;/* pushes text down like reference */
 }
 
 .hero-aside-highlight {
@@ -220,7 +219,7 @@ max-width: 1400px;
 .num {
 font-family: "Open Sans";
 font-size: 306.131px;
-  font-weight: 6  00;
+  font-weight: 600;
   color: #f7a33c;
   line-height: 0.8;
   margin-left: -139px;
@@ -231,7 +230,7 @@ font-size: 306.131px;
  font-family: "Open Sans";
 font-size: 72.624px;
 font-style: normal;
-  right: 0px;
+  right: -7px;
   top: -7px;
   color: #f7a33c;
 }
