@@ -139,7 +139,8 @@ text-transform: uppercase;
   flex-basis: 35%;
   text-align: right;
   padding-bottom: 33px;
-     margin-left:-701px;
+        margin-left: -904px;
+    margin-right: 100px;
 }
 
 .hero-aside-highlight {
@@ -159,7 +160,7 @@ line-height: normal;
   
   margin-bottom: 51px;
   opacity: 0.8;
-  width: 614px;
+  width: 665px;
   margin-left: -76px;
   color: #FFF;
 color: #FFF;
@@ -232,14 +233,14 @@ height: 465px;
 .intro-top-text {
   position: relative;
   display: inline-block;
-  margin-bottom: -20px;
+  margin-bottom: -51px;
 }
 
 .num {
  
   font-weight: 700;
   color: #f7a33c;
-  margin-left: -128px;
+  margin-left: -138px;
 font-family: 'Satoshi', 'Open Sans', sans-serif;
 font-size: 306.131px;
 font-style: normal;
@@ -249,8 +250,8 @@ line-height: normal;
 
 .ordinal {
   position: absolute;
-  top: 33px;
-  right: -12px;
+  top: 70px;
+    right: -3px;
   color: #f7a33c;
 font-family: 'Satoshi', 'Open Sans', sans-serif;
 font-size: 72.624px;
