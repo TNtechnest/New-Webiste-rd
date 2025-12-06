@@ -282,10 +282,9 @@ line-height: normal;
 
 /* BIG WHITE TEXT */
 .intro-bottom-text {
-font-weight: 800;
 color: #FFF;
 font-family: 'Satoshi', 'Open Sans', sans-serif;
-font-size: 71.912px;
+font-size: 77.912px;
 font-style: normal;
 font-weight: 800;
 line-height: normal;
@@ -553,7 +552,7 @@ height: 576px;
      
     width: fit-content;
     margin-left: auto;
-    margin-right: 466px;
+    margin-right: 500px;
     margin-bottom: -23px;
     margin-top: 20px;
 }
@@ -819,7 +818,7 @@ height: 82.662px;
 .card-content p {
   color: #FFF;
 font-family: 'Satoshi', 'Open Sans', sans-serif;
-font-size: 21.722px;
+    font-size: 20.722px;
 font-style: normal;
 font-weight: 300;
 line-height: normal;
