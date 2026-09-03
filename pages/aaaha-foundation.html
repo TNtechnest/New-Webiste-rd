@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AAaha Foundation // Redesign Canvas</title>
+  <meta name="description" content="Project detail page for Redesign Canvas work with AAha Foundation, covering campaign storytelling, posters, and media assets.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #030303;
+      --card-bg: rgba(10,10,10,0.6);
+      --text: #e0e0e0;
+      --accent: #ff003c;
+      --accent-2: #00f3ff;
+      --border: rgba(255,255,255,0.1);
+      --font-display: 'Syncopate', sans-serif;
+      --font-code: 'JetBrains Mono', monospace;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-display);
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      cursor: crosshair;
+    }
+
+    /* OVERLAYS */
+    .scanlines {
+      position: fixed; inset: 0;
+      background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.18) 50%, rgba(0,0,0,0.18));
+      background-size: 100% 4px;
+      pointer-events: none; z-index: 10;
+    }
+    .vignette {
+      position: fixed; inset: 0;
+      background: radial-gradient(circle, transparent 40%, #000 120%);
+      z-index: 11; pointer-events: none;
+    }
+
+    /* HUD */
+    .hud {
+      position: fixed; inset: 1.8rem;
+      z-index: 30; pointer-events: none;
+      display: flex; flex-direction: column; justify-content: space-between;
+      font-family: var(--font-code); font-size: 10px;
+      color: rgba(255,255,255,0.45); text-transform: uppercase;
+    }
+    .hud-top, .hud-bottom { display: flex; justify-content: space-between; align-items: center; }
+    .hud strong { color: var(--accent-2); }
+    .hud-line { flex: 1; height: 1px; background: rgba(255,255,255,0.15); margin: 0 1rem; position: relative; }
+    .hud-line::after { content:''; position:absolute; right:0; top:-2px; width:5px; height:5px; background:var(--accent); }
+    .hud-side {
+      position: fixed; left: 1.8rem; top: 50%; transform: translateY(-50%) rotate(180deg);
+      writing-mode: vertical-rl; font-family: var(--font-code); font-size: 10px;
+      color: rgba(255,255,255,0.35); letter-spacing: 0.1em; z-index: 30; pointer-events: none;
+    }
+
+    /* PROGRESS */
+    .progress-bar {
+      position: fixed; right: 1.8rem; top: 50%; transform: translateY(-50%);
+      width: 2px; height: 200px; background: rgba(255,255,255,0.1); z-index: 30;
+    }
+    .progress-fill {
+      width: 100%; background: var(--accent-2);
+      transition: height 0.1s; height: 0%;
+    }
+
+    /* SECTION INDICATOR */
+    .section-label {
+      position: fixed; bottom: 4rem; left: 50%; transform: translateX(-50%);
+      font-family: var(--font-code); font-size: 11px; color: rgba(255,255,255,0.5);
+      letter-spacing: 0.3em; text-transform: uppercase; z-index: 30;
+      pointer-events: none;
+      transition: opacity 0.4s;
+    }
+
+    /* SCROLL HINT */
+    .scroll-hint {
+      position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      font-family: var(--font-code); font-size: 9px; color: rgba(255,255,255,0.3);
+      letter-spacing: 0.2em; z-index: 30; pointer-events: none;
+      animation: blink 2s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:0.3} 50%{opacity:0.8} }
+
+    /* 3D SCENE */
+    .viewport {
+      position: fixed; inset: 0;
+      perspective: 1000px;
+      overflow: hidden; z-index: 1;
+    }
+    .world {
+      position: absolute; top: 50%; left: 50%;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+    .item {
+      position: absolute; left: 0; top: 0;
+      backface-visibility: hidden;
+      transform-origin: center center;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* CARDS */
+    .card {
+      width: min(300px, 82vw); min-height: 420px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      position: relative; padding: 1.8rem;
+      display: flex; flex-direction: column; gap: 1rem;
+      backdrop-filter: blur(10px);
+      transform: translate(-50%, -50%);
+      transition: border-color 0.3s;
+    }
+    .card::before, .card::after {
+      content:''; position:absolute;
+      width:12px; height:12px;
+      border:1px solid transparent; transition:0.4s;
+    }
+    .card::before { top:-1px; left:-1px; border-top-color:#fff; border-left-color:#fff; }
+    .card::after  { bottom:-1px; right:-1px; border-bottom-color:#fff; border-right-color:#fff; }
+    .card-id { font-family:var(--font-code); color:var(--accent); font-size:0.7rem; }
+    .card h2 {
+      font-size: 1.5rem; line-height: 1.1;
+      text-transform: uppercase; font-weight: 700; color: #fff;
+    }
+    .card-body {
+      font-family: var(--font-code); font-size: 0.65rem;
+      color: rgba(255,255,255,0.55); line-height: 1.7;
+    }
+    .card-img {
+      width: 100%; aspect-ratio: 4/3;
+      object-fit: cover; opacity: 0.75;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .card-img-placeholder {
+      width: 100%; aspect-ratio: 4/3;
+      background: linear-gradient(135deg,rgba(255,0,60,0.1),rgba(0,243,255,0.05));
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-code); font-size: 0.6rem;
+      color: rgba(255,255,255,0.25);
+    }
+    .card-footer {
+      margin-top: auto;
+      font-family: var(--font-code); font-size: 0.6rem;
+      color: rgba(255,255,255,0.3);
+      display: flex; justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 0.75rem;
+    }
+
+    /* BIG TEXT */
+    .big-text {
+      font-size: 12vw; font-weight: 800;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(255,255,255,0.12);
+      text-transform: uppercase;
+      white-space: nowrap;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      letter-spacing: -0.4rem;
+    }
+
+    /* VIDEO CARD */
+    .video-card {
+      width: min(340px, 88vw); height: min(220px, 57vw);
+      background: #000;
+      border: 1px solid rgba(0,243,255,0.3);
+      transform: translate(-50%, -50%);
+      overflow: hidden; position: relative;
+    }
+    .video-card iframe { width:100%; height:100%; border:none; }
+    .video-card-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      font-family: var(--font-code); font-size: 0.6rem;
+      color: var(--accent-2); padding: 0.5rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      letter-spacing: 0.15em;
+    }
+
+    /* POSTER CARD */
+    .poster-card {
+      width: min(220px, 60vw); height: min(300px, 82vw);
+      background: rgba(5,5,5,0.8);
+      border: 1px solid rgba(255,0,60,0.25);
+      transform: translate(-50%, -50%);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .poster-card img {
+      width: 100%; flex: 1;
+      object-fit: cover; opacity: 0.85;
+    }
+    .poster-card-img-placeholder {
+      width: 100%; flex: 1;
+      background: linear-gradient(160deg,rgba(255,0,60,0.12),rgba(0,0,0,0.6));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-code); font-size: 0.55rem;
+      color: rgba(255,0,60,0.4);
+    }
+    .poster-label {
+      font-family: var(--font-code); font-size: 0.6rem;
+      color: rgba(255,0,60,0.7); padding: 0.5rem;
+      letter-spacing: 0.1em; border-top: 1px solid rgba(255,0,60,0.15);
+    }
+
+    /* STAR */
+    .star {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: white;
+      transform: translate(-50%, -50%);
+    }
+
+
+  </style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+<div class="vignette"></div>
+
+<div class="hud">
+  <div class="hud-top">
+    <span>AAAHA FOUNDATION</span>
+    <div class="hud-line"></div>
+    <span>REDESIGN CANVAS</span>
+    <div class="hud-line"></div>
+    <span>FPS: <strong id="fps">60</strong></span>
+  </div>
+  <div class="hud-bottom">
+    <span>Z-DEPTH: <strong id="coord">0000</strong></span>
+    <div class="hud-line"></div>
+    <span>VEL: <strong id="vel">0.00</strong></span>
+    <div class="hud-line"></div>
+    <span>VER 1.0</span>
+  </div>
+</div>
+
+<div class="hud-side">SCROLL VELOCITY // <span id="vel2">0.00</span></div>
+
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+<div class="section-label" id="section-label">HERO</div>
+<div class="scroll-hint">↕ SCROLL TO EXPLORE</div>
+
+<div class="viewport" id="viewport">
+  <div class="world" id="world"></div>
+</div>
+
+
+
+<script>
+// ─── CONFIG ───────────────────────────────────────────────────────────────────
+const ZG = 1000;   // Z gap between sections
+const CAM = 2.5;   // camera speed multiplier
+const LOOP = ZG * 12;
+
+// ─── SECTIONS ─────────────────────────────────────────────────────────────────
+// Each section defines what to show at that Z position
+const SECTIONS = [
+  // HERO
+  { z: 0,       type: 'big',    txt: 'AAAHA',    x: 0,    y: 0   },
+  { z: -ZG*0.8, type: 'card',
+    id: 'HERO // 01',
+    title: 'AAAHA FOUNDATION',
+    body: 'At Redesign Canvas, we see our journey as just beginning. We want to keep using design and communication to bring people together, solve real problems, and tell stories that matter.',
+    img: 'big1 (1).jpg',
+    x: -160, y: 60, rot: -6 },
+
+  // CREATIVE PROCESS
+  { z: -ZG*2,   type: 'big',    txt: 'DESIGN',   x: 0,    y: 0   },
+  { z: -ZG*2.7, type: 'card',
+    id: 'PROCESS // 02',
+    title: 'OUR CREATIVE PROCESS',
+    body: 'We work closely with communities to design meaningful, inclusive and impactful visual stories that connect deeply with people.',
+    img: '../assets/images/site/Aaha_Foundation/IMG-20200908-WA0440.webp',
+    x: 160, y: -60, rot: 7 },
+  { z: -ZG*3.4, type: 'card',
+    id: 'PROCESS // 03',
+    title: 'HUMAN CENTERED',
+    body: 'Guided by a human-centered design and SBCC approach, we will continue to listen, learn, and create ideas that connect deeply with the communities we work with.',
+    img: '../assets/images/site/Aaha_Foundation/Theeppetti kolli.webp',
+    x: -180, y: 80, rot: -5 },
+
+  // VIDEO
+  { z: -ZG*4.5, type: 'big',    txt: 'IMPACT',   x: 0,    y: 0   },
+  { z: -ZG*5.2, type: 'video',
+    url: 'https://www.youtube.com/embed/9FpAqaOOWT4?autoplay=1&mute=1&loop=1&playlist=9FpAqaOOWT4',
+    x: 0, y: 0, rot: 0 },
+
+  // CAMPAIGN POSTERS
+  { z: -ZG*6.5, type: 'big',    txt: 'CAMPAIGN', x: 0,    y: 0   },
+  { z: -ZG*7.2, type: 'poster',
+    img: '../assets/images/site/Aaha_Foundation/aaha poster 7.0 .webp',
+    label: 'POSTER // 01',
+    x: -260, y: 60, rot: -10 },
+  { z: -ZG*7.7, type: 'poster',
+    img: '../assets/images/site/Aaha_Foundation/aaha poster 8 .webp',
+    label: 'POSTER // 02',
+    x: 0, y: -40, rot: 3 },
+  { z: -ZG*8.2, type: 'poster',
+    img: '../assets/images/site/Aaha_Foundation/aaha poster who we are (1).jpg',
+    label: 'POSTER // 03',
+    x: 260, y: 60, rot: 10 },
+
+  // END
+  { z: -ZG*9.5, type: 'big',    txt: 'STORIES',  x: 0,    y: 0   },
+  { z: -ZG*10.2, type: 'card',
+    id: 'MISSION // 04',
+    title: 'STORIES THAT MATTER',
+    body: 'We continue to listen, learn, and create ideas that connect deeply with the communities we work with. Design is our language. Change is our goal.',
+    x: 0, y: 0, rot: 0 },
+];
+
+const SECTION_NAMES = {
+  0: 'HERO',
+  '-ZG*2': 'CREATIVE PROCESS',
+  '-ZG*4.5': 'IMPACT',
+  '-ZG*6.5': 'CAMPAIGN POSTERS',
+  '-ZG*9.5': 'OUR STORY',
+};
+
+const sectionLabels = [
+  { zFrom: 0,        zTo: -ZG*2,   label: 'HERO // AAAHA FOUNDATION' },
+  { zFrom: -ZG*2,    zTo: -ZG*4.5, label: 'OUR CREATIVE PROCESS' },
+  { zFrom: -ZG*4.5,  zTo: -ZG*6.5, label: 'IMPACT // CAMPAIGN VIDEO' },
+  { zFrom: -ZG*6.5,  zTo: -ZG*9.5, label: 'CAMPAIGN POSTERS' },
+  { zFrom: -ZG*9.5,  zTo: -Infinity,label: 'STORIES THAT MATTER' },
+];
+
+// ─── BUILD WORLD ──────────────────────────────────────────────────────────────
+const world = document.getElementById('world');
+const viewport = document.getElementById('viewport');
+const items = [];
+
+// Scale horizontal/vertical offsets down on narrow screens so cards/posters
+// stay within view (desktop layout/positions are unchanged above 900px).
+const OFFSET_SCALE = Math.min(1, window.innerWidth / 900);
+
+SECTIONS.forEach((s, i) => {
+  const el = document.createElement('div');
+  el.className = 'item';
+
+  if (s.type === 'big') {
+    const t = document.createElement('div');
+    t.className = 'big-text';
+    t.innerText = s.txt;
+    el.appendChild(t);
+
+  } else if (s.type === 'card') {
+    const c = document.createElement('div');
+    c.className = 'card';
+    // Image or placeholder
+    const imgHtml = s.img
+      ? `<img class="card-img" src="${s.img}" alt="" onerror="this.outerHTML='<div class=\\'card-img-placeholder\\'>[IMAGE]</div>'">`
+      : '';
+    c.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span class="card-id">${s.id || 'ID-' + i}</span>
+        <div style="width:8px;height:8px;background:var(--accent)"></div>
+      </div>
+      <h2>${s.title}</h2>
+      ${imgHtml}
+      <div class="card-body">${s.body}</div>
+      <div class="card-footer">
+        <span>REDESIGN CANVAS</span>
+        <span>SBCC // HCD</span>
+      </div>
+    `;
+    el.appendChild(c);
+
+  } else if (s.type === 'video') {
+    const c = document.createElement('div');
+    c.className = 'video-card';
+    c.innerHTML = `
+      <iframe src="${s.url}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <div class="video-card-label">▶ CAMPAIGN VIDEO // AAAHA FOUNDATION</div>
+    `;
+    el.appendChild(c);
+
+  } else if (s.type === 'poster') {
+    const c = document.createElement('div');
+    c.className = 'poster-card';
+    if (s.img) {
+      c.innerHTML = `
+        <img src="${s.img}" alt="${s.label}" onerror="this.outerHTML='<div class=\\'poster-card-img-placeholder\\'>[POSTER IMAGE]</div>'">
+        <div class="poster-label">${s.label}</div>
+      `;
+    } else {
+      c.innerHTML = `
+        <div class="poster-card-img-placeholder">[POSTER IMAGE]</div>
+        <div class="poster-label">${s.label}</div>
+      `;
+    }
+    el.appendChild(c);
+  }
+
+  world.appendChild(el);
+  items.push({
+    el,
+    type: s.type,
+    x: (s.x || 0) * OFFSET_SCALE,
+    y: (s.y || 0) * OFFSET_SCALE,
+    rot: s.rot || 0,
+    baseZ: s.z,
+  });
+});
+
+// Stars
+for (let i = 0; i < 180; i++) {
+  const el = document.createElement('div');
+  el.className = 'item';
+  const s = document.createElement('div');
+  s.className = 'star';
+  el.appendChild(s);
+  world.appendChild(el);
+  items.push({
+    el, type: 'star',
+    x: (Math.random() - 0.5) * 4000,
+    y: (Math.random() - 0.5) * 3000,
+    baseZ: -Math.random() * LOOP,
+    rot: 0,
+  });
+}
+
+// ─── STATE ────────────────────────────────────────────────────────────────────
+const state = { scroll: 0, targetScroll: 0, vel: 0, mouseX: 0, mouseY: 0 };
+const MAX_SCROLL = LOOP / CAM * 0.92;
+
+// ─── NATIVE SMOOTH SCROLL ─────────────────────────────────────────────────────
+window.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  state.targetScroll = Math.max(0, Math.min(MAX_SCROLL, state.targetScroll + e.deltaY * 1.2));
+}, { passive: false });
+
+let lastTouchY = 0;
+window.addEventListener('touchstart', (e) => { lastTouchY = e.touches[0].clientY; }, { passive: true });
+window.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  const dy = lastTouchY - e.touches[0].clientY;
+  lastTouchY = e.touches[0].clientY;
+  state.targetScroll = Math.max(0, Math.min(MAX_SCROLL, state.targetScroll + dy * 2));
+}, { passive: false });
+
+// ─── MOUSE ────────────────────────────────────────────────────────────────────
+window.addEventListener('mousemove', (e) => {
+  state.mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+  state.mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+});
+
+// ─── DOM REFS ────────────────────────────────────────────────────────────────
+const fpsEl      = document.getElementById('fps');
+const coordEl    = document.getElementById('coord');
+const velEl      = document.getElementById('vel');
+const vel2El     = document.getElementById('vel2');
+const progressEl = document.getElementById('progress');
+const sectionEl  = document.getElementById('section-label');
+
+let lastTime = 0;
+let frameCount = 0;
+let lastFpsTime = 0;
+
+// ─── RAF LOOP ─────────────────────────────────────────────────────────────────
+function raf(time) {
+  const dt = time - lastTime;
+  lastTime = time;
+
+  // FPS counter
+  frameCount++;
+  if (time - lastFpsTime > 500) {
+    fpsEl.innerText = Math.round(frameCount / ((time - lastFpsTime) / 1000));
+    frameCount = 0;
+    lastFpsTime = time;
+  }
+
+  // Lerp scroll position (smooth inertia)
+  const prevScroll = state.scroll;
+  state.scroll += (state.targetScroll - state.scroll) * 0.08;
+  state.vel = (state.scroll - prevScroll) * 60; // pixels/sec feel
+
+  // HUD
+  const absVel = Math.abs(state.vel).toFixed(2);
+  velEl.innerText = absVel;
+  vel2El.innerText = absVel;
+
+  const camZ = state.scroll * CAM;
+  coordEl.innerText = String(Math.round(camZ)).padStart(4, '0');
+
+  // Progress bar (based on max scroll ~= LOOP / CAM)
+  const maxScroll = LOOP / CAM * 0.9;
+  const pct = Math.min(100, (state.scroll / maxScroll) * 100);
+  progressEl.style.height = pct + '%';
+
+  // Section label
+  const approxZ = -camZ;
+  let currentLabel = sectionLabels[0].label;
+  for (const sl of sectionLabels) {
+    if (approxZ <= sl.zFrom && (approxZ > sl.zTo)) {
+      currentLabel = sl.label;
+      break;
+    }
+  }
+  sectionEl.innerText = currentLabel;
+
+  // Camera tilt
+  const tiltX = state.mouseY * 4 - state.vel * 0.4;
+  const tiltY = state.mouseX * 4;
+  world.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+
+  // Dynamic FOV warp
+  const fov = Math.max(300, 1000 - Math.abs(state.vel) * 12);
+  viewport.style.perspective = fov + 'px';
+
+  // Render items
+  items.forEach(item => {
+    let relZ = item.baseZ + camZ;
+
+    // Infinite loop wrapping
+    let vizZ = ((relZ % LOOP) + LOOP) % LOOP;
+    if (vizZ > 600) vizZ -= LOOP;
+
+    // Opacity: fade in far, fade out near
+    let alpha = 1;
+    if (vizZ < -4500) alpha = 0;
+    else if (vizZ < -3000) alpha = (vizZ + 4500) / 1500;
+    if (item.type !== 'star') {
+      if (vizZ > 150)  alpha = 1 - ((vizZ - 150) / 500);
+    }
+    alpha = Math.max(0, Math.min(1, alpha));
+    item.el.style.opacity = alpha;
+
+    if (alpha <= 0.01) return;
+
+    // Build transform
+    let tr = `translate3d(${item.x}px, ${item.y}px, ${vizZ}px)`;
+
+    if (item.type === 'star') {
+      const stretch = Math.max(1, Math.min(1 + Math.abs(state.vel) * 0.08, 12));
+      tr += ` scale3d(1, 1, ${stretch})`;
+
+    } else if (item.type === 'big') {
+      tr += ` rotateZ(0deg)`;
+      const el = item.el.firstChild;
+      if (Math.abs(state.vel) > 1.5) {
+        const off = state.vel * 2;
+        el.style.textShadow = `${off}px 0 rgba(255,0,60,0.8), ${-off}px 0 rgba(0,243,255,0.8)`;
+      } else {
+        el.style.textShadow = 'none';
+      }
+
+    } else if (item.type === 'card') {
+      const float = Math.sin(time * 0.0008 + item.x * 0.01) * 6;
+      tr += ` rotateZ(${item.rot}deg) rotateY(${float}deg)`;
+
+    } else if (item.type === 'poster') {
+      const float = Math.sin(time * 0.001 + item.x * 0.01) * 4;
+      tr += ` rotateZ(${item.rot}deg) rotateY(${float}deg)`;
+
+    } else {
+      tr += ` rotateZ(${item.rot}deg)`;
+    }
+
+    item.el.style.transform = tr;
+  });
+
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+</script>
+</body>
+</html>

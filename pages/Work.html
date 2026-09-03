@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Explore Redesign Canvas work across branding, documentaries, reading movements, campaign design, and visual communication.">
+
+<link rel="canonical" href="https://redesigncanvas.com/Work.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Our Work | Redesign Canvas">
+<meta property="og:description" content="Explore Redesign Canvas work across branding, documentaries, reading movements, campaign design, and visual communication.">
+<meta property="og:url" content="https://redesigncanvas.com/Work.html">
+<meta property="og:image" content="https://redesigncanvas.com/Logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Our Work | Redesign Canvas">
+<meta name="twitter:description" content="Explore Redesign Canvas work across branding, documentaries, reading movements, campaign design, and visual communication.">
+<meta name="twitter:image" content="https://redesigncanvas.com/Logo.png">
+<title>Our Work | Redesign Canvas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../css/styles/style.css">
+<link rel="stylesheet" href="../css/styles/mobile-responsive-fix.css">
+<script src="../js/scripts/site-core.js" defer></script>
+<style>
+  :root {
+    --work-deep: #041f16;
+    --work-primary: #022527;
+    --work-accent: #fba243;
+    --work-white: #ffffff;
+    --work-soft: #f5f5f5;
+    --work-muted: rgba(255, 255, 255, 0.68);
+    --work-ink: #103c46;
+    --work-line: rgba(255, 255, 255, 0.14);
+  }
+
+  .work-page {
+    font-family: "DM Sans", "Satoshi", sans-serif;
+    background: var(--work-primary);
+    color: var(--work-white);
+    overflow-x: hidden;
+  }
+
+  .work-page-main {
+    background: transparent;
+  }
+
+  .work-landing-hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  .work-hero-bg,
+  .work-hero-grid {
+    position: absolute;
+    inset: 0;
+  }
+
+  .work-hero-bg {
+    background: transparent;
+  }
+
+  .work-hero-grid {
+    display: none;
+  }
+
+  .work-hero-content {
+    position: relative;
+    z-index: 2;
+    width: min(900px, calc(100% - 40px));
+    margin-left: clamp(20px, 7vw, 80px);
+    padding-top: 80px;
+  }
+
+  .work-eyebrow,
+  .work-hero-title,
+  .work-hero-sub,
+  .work-hero-link,
+  .work-scroll-note {
+    opacity: 0;
+    animation: workFadeUp 0.9s ease forwards;
+  }
+
+  .work-eyebrow {
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--work-accent);
+    margin-bottom: 24px;
+    animation-delay: 0.18s;
+  }
+
+  .work-hero-title {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(74px, 12vw, 164px);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    animation-delay: 0.34s;
+  }
+
+  .work-hero-title span {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(251, 162, 67, 0.56);
+  }
+
+  .work-hero-sub {
+    max-width: 540px;
+    margin-top: 30px;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--work-muted);
+    animation-delay: 0.5s;
+  }
+
+  .work-hero-link {
+    margin-top: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid rgba(251, 162, 67, 0.52);
+    padding: 16px 30px;
+    color: var(--work-white);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: border-color 0.3s ease, background 0.3s ease;
+    animation-delay: 0.66s;
+  }
+
+  .work-hero-link:hover {
+    background: rgba(251, 162, 67, 0.14);
+    border-color: var(--work-accent);
+  }
+
+  .work-link-line {
+    width: 20px;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.3s ease;
+  }
+
+  .work-hero-link:hover .work-link-line {
+    width: 34px;
+  }
+
+  .work-scroll-note {
+    position: absolute;
+    left: clamp(20px, 7vw, 80px);
+    bottom: 38px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.52);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation-delay: 0.9s;
+  }
+
+  .work-scroll-line {
+    width: 44px;
+    height: 1px;
+    background: currentColor;
+    animation: workLinePulse 1.4s ease-in-out infinite alternate;
+  }
+
+  .work-intro-section {
+    background: transparent;
+    color: var(--work-white);
+    padding: clamp(72px, 9vw, 110px) clamp(20px, 6vw, 70px);
+  }
+
+  .work-intro-inner {
+    width: min(1180px, 100%);
+    margin: 0 auto;
+  }
+
+  .work-intro-top {
+    display: grid;
+    grid-template-columns: 0.85fr 1.45fr;
+    gap: clamp(38px, 7vw, 92px);
+    align-items: start;
+    margin-bottom: 58px;
+  }
+
+  .work-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--work-accent);
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .work-intro-heading {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(52px, 7vw, 88px);
+    line-height: 0.95;
+    letter-spacing: 1px;
+    color: var(--work-white);
+  }
+
+  .work-intro-copy {
+    font-size: 17px;
+    line-height: 1.85;
+    color: rgba(255, 255, 255, 0.78);
+    margin-bottom: 22px;
+  }
+
+  .work-intro-bold {
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 2px solid var(--work-accent);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.7;
+    color: var(--work-white);
+  }
+
+  .work-filter-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .work-filter-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    color: var(--work-white);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .work-filter-item:first-child {
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+    padding-right: 42px;
+  }
+
+  .work-filter-item:last-child {
+    padding-left: 42px;
+  }
+
+  .work-chevron {
+    width: 15px;
+    height: 15px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    margin-top: -5px;
+  }
+
+  .rc-work-list {
+    background: transparent;
+  }
+
+  .rc-work-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 560px;
+    border-bottom: 1px solid var(--work-line);
+  }
+
+  .rc-work-card:nth-child(even) {
+    direction: rtl;
+  }
+
+  .rc-work-card:nth-child(even) > * {
+    direction: ltr;
+  }
+
+  .rc-work-text {
+    padding: clamp(50px, 7vw, 88px) clamp(24px, 6vw, 70px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .rc-work-card:nth-child(1) .rc-work-text { background: var(--work-primary); }
+  .rc-work-card:nth-child(2) .rc-work-text { background: var(--work-deep); }
+  .rc-work-card:nth-child(3) .rc-work-text { background: #103c46; }
+  .rc-work-card:nth-child(4) .rc-work-text { background: #0a342a; }
+  .rc-work-card:nth-child(5) .rc-work-text { background: #3a2a16; }
+
+  .rc-work-client {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--work-accent);
+  }
+
+  .rc-work-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .rc-work-tag {
+    border: 1px solid rgba(251, 162, 67, 0.45);
+    padding: 5px 12px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .rc-work-title {
+    max-width: 540px;
+    margin-bottom: 20px;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(40px, 5vw, 62px);
+    line-height: 1.03;
+    letter-spacing: 1px;
+  }
+
+  .rc-work-desc {
+    max-width: 430px;
+    margin-bottom: 34px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 15px;
+    line-height: 1.78;
+  }
+
+  .rc-work-link {
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--work-white);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.44);
+    padding-bottom: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: gap 0.25s ease, border-color 0.25s ease;
+  }
+
+  .rc-work-link:hover {
+    gap: 20px;
+    border-color: var(--work-white);
+  }
+
+  .rc-work-image {
+    position: relative;
+    overflow: hidden;
+    min-height: 420px;
+    background: var(--work-primary);
+  }
+
+  .rc-work-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    filter: grayscale(18%);
+    transition: transform 0.65s ease, filter 0.65s ease;
+  }
+
+  .rc-work-card:hover .rc-work-image img {
+    transform: scale(1.045);
+    filter: grayscale(0%);
+  }
+
+  .work-reveal {
+    opacity: 0;
+    transform: translateY(42px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
+  }
+
+  .work-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes workFadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes workLinePulse {
+    from { width: 44px; }
+    to { width: 74px; }
+  }
+
+  @media (max-width: 860px) {
+    .work-hero-content {
+      width: calc(100% - 36px);
+      margin-left: 18px;
+      padding-top: 72px;
+    }
+
+    .work-scroll-note {
+      left: 18px;
+      bottom: 24px;
+    }
+
+    .work-intro-top,
+    .rc-work-card {
+      grid-template-columns: 1fr;
+    }
+
+    .rc-work-card:nth-child(even) {
+      direction: ltr;
+    }
+
+    .work-filter-row {
+      grid-template-columns: 1fr;
+    }
+
+    .work-filter-item:first-child {
+      border-right: 0;
+      padding-right: 0;
+    }
+
+    .work-filter-item:last-child {
+      padding-left: 0;
+    }
+
+    .rc-work-image {
+      min-height: 320px;
+      order: -1;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .work-landing-hero {
+      min-height: 92vh;
+      min-height: 92svh;
+    }
+
+    .work-eyebrow,
+    .work-scroll-note {
+      letter-spacing: 2.5px;
+    }
+
+    .work-hero-title {
+      font-size: clamp(64px, 20vw, 92px);
+    }
+
+    .work-hero-sub {
+      font-size: 15px;
+    }
+
+    .work-hero-link {
+      width: 100%;
+      justify-content: center;
+      padding: 15px 20px;
+    }
+
+    .rc-work-text {
+      padding: 42px 22px;
+    }
+
+    .rc-work-title {
+      font-size: 38px;
+    }
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Our Work | Redesign Canvas",
+  "url": "https://redesigncanvas.com/Work.html",
+  "description": "Explore Redesign Canvas work across branding, documentaries, reading movements, campaign design, and visual communication.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Redesign Canvas",
+    "url": "https://redesigncanvas.com/"
+  }
+}
+</script>
+</head>
+<body class="work-page">
+<main class="work-page-main">
+  <section class="work-landing-hero">
+    <div class="work-hero-bg"></div>
+    <div class="work-hero-grid"></div>
+    <div class="work-hero-content">
+      <div class="work-eyebrow">Human First Communication</div>
+      <h1 class="work-hero-title">OUR<br><span>WORK</span></h1>
+      <p class="work-hero-sub">We create communication, campaigns, films, and identity systems that listen first, connect deeply, and help ideas move through real communities.</p>
+      <a class="work-hero-link" href="#work-cases">
+        View Projects
+        <span class="work-link-line"></span>
+      </a>
+    </div>
+    <div class="work-scroll-note">
+      <span class="work-scroll-line"></span>
+      Selected Work
+    </div>
+  </section>
+
+  <section class="work-intro-section">
+    <div class="work-intro-inner">
+      <div class="work-intro-top">
+        <div>
+          <div class="work-label">Redesign Canvas</div>
+          <h2 class="work-intro-heading">Human<br>Centered<br>Impact</h2>
+        </div>
+        <div>
+          <p class="work-intro-copy">At Redesign Canvas, design begins with people. We work with brands, governments, institutions, and communities to translate purpose into stories, visuals, and experiences that can be understood, remembered, and acted on.</p>
+          <p class="work-intro-copy">Our work spans identity design, campaign strategy, documentary storytelling, reading movements, and visual communication for public and cultural impact.</p>
+          <div class="work-intro-bold">See a selection of our work below, built from the projects and stories already part of Redesign Canvas.</div>
+        </div>
+      </div>
+      <div class="work-filter-row" aria-label="Work focus areas">
+        <div class="work-filter-item">
+          Branding, Campaigns, Film
+          <span class="work-chevron"></span>
+        </div>
+        <div class="work-filter-item">
+          Community, Culture, Impact
+          <span class="work-chevron"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work-cases" class="rc-work-list" aria-label="Selected Redesign Canvas work">
+    <article class="rc-work-card work-reveal">
+      <div class="rc-work-text">
+        <div class="rc-work-client">Aaha Foundation</div>
+        <div class="rc-work-tags">
+          <span class="rc-work-tag">Branding</span>
+          <span class="rc-work-tag">Campaign</span>
+        </div>
+        <h3 class="rc-work-title">Building Recognition Through Human Stories</h3>
+        <p class="rc-work-desc">A communication and campaign identity project shaped around community connection, visual clarity, and messages that stay close to people.</p>
+        <a class="rc-work-link" href="work-aaha.html">Read Case Study &rarr;</a>
+      </div>
+      <a class="rc-work-image" href="work-aaha.html" aria-label="Open Aaha Foundation case study">
+        <img src="../assets/images/site/Aaha_Foundation/IMG-20200908-WA0440.webp" alt="Aaha Foundation campaign field image">
+      </a>
+    </article>
+
+    <article class="rc-work-card work-reveal">
+      <div class="rc-work-text">
+        <div class="rc-work-client">Documentaries</div>
+        <div class="rc-work-tags">
+          <span class="rc-work-tag">Photography</span>
+          <span class="rc-work-tag">Storytelling</span>
+        </div>
+        <h3 class="rc-work-title">Documenting People, Places, and Purpose</h3>
+        <p class="rc-work-desc">Visual storytelling work that captures lived realities and turns moments from the field into communication with emotional weight.</p>
+        <a class="rc-work-link" href="work-documentaries.html">Read Case Study &rarr;</a>
+      </div>
+      <a class="rc-work-image" href="work-documentaries.html" aria-label="Open Documentaries case study">
+        <img src="../assets/images/site/Documentaries/row-1/3.webp" alt="Documentary photography from Redesign Canvas" loading="lazy">
+      </a>
+    </article>
+
+    <article class="rc-work-card work-reveal">
+      <div class="rc-work-text">
+        <div class="rc-work-client">Nagai Book Fair</div>
+        <div class="rc-work-tags">
+          <span class="rc-work-tag">Reading Movement</span>
+          <span class="rc-work-tag">Outreach</span>
+        </div>
+        <h3 class="rc-work-title">A Reading Movement for a District</h3>
+        <p class="rc-work-desc">A cultural campaign designed to inspire young readers, strengthen public participation, and turn a book fair into a shared movement.</p>
+        <a class="rc-work-link" href="nagai-book-fair.html">Read Case Study &rarr;</a>
+      </div>
+      <a class="rc-work-image" href="nagai-book-fair.html" aria-label="Open Nagai Book Fair case study">
+        <img src="../assets/images/site/Nagai_Book_Fair/hero/1.webp" alt="Nagai Book Fair campaign visual" loading="lazy">
+      </a>
+    </article>
+
+    <article class="rc-work-card work-reveal">
+      <div class="rc-work-text">
+        <div class="rc-work-client">Art Academy</div>
+        <div class="rc-work-tags">
+          <span class="rc-work-tag">Design</span>
+          <span class="rc-work-tag">Brand Identity</span>
+        </div>
+        <h3 class="rc-work-title">Elevating an Artistic Community</h3>
+        <p class="rc-work-desc">A brand and content direction project for an academy, built to improve positioning, visual storytelling, and the way artworks meet audiences.</p>
+        <a class="rc-work-link" href="art-academy.html">Read Case Study &rarr;</a>
+      </div>
+      <a class="rc-work-image" href="art-academy.html" aria-label="Open Art Academy case study">
+        <img src="../assets/images/site/Art_Academy/left/1.webp" alt="Art Academy student artwork display" loading="lazy">
+      </a>
+    </article>
+
+    <!-- <article class="rc-work-card work-reveal">
+      <div class="rc-work-text">
+        <div class="rc-work-client">Visual RK</div>
+        <div class="rc-work-tags">
+          <span class="rc-work-tag">Poster Design</span>
+          <span class="rc-work-tag">Visual Communication</span>
+        </div>
+        <h3 class="rc-work-title">Bold Visual Assets for Events</h3>
+        <p class="rc-work-desc">A focused set of event posters and campaign layouts balancing hierarchy, emotion, and clarity across print and digital touchpoints.</p>
+        <a class="rc-work-link" href="event-poster.html">Read Case Study &rarr;</a>
+      </div>
+      <a class="rc-work-image" href="event-poster.html" aria-label="Open Visual RK case study">
+        <img src="../assets/images/site/Event_Poster/row-1/1.webp" alt="Visual RK event poster design" loading="lazy">
+      </a>
+    </article> -->
+  </section>
+</main>
+
+<section id="section-contact" class="contact-section">
+  <div class="container contact-container">
+    <div class="contact-prompt">
+      <p>Reach out to explore<br>how we can create<br><strong>Impact together.</strong></p>
+    </div>
+    <div class="contact-details">
+      <p><strong>Connect With Us</strong><br>
+        <a href="mailto:connect@redesigncanvas.com">connect@redesigncanvas.com</a>
+      </p>
+
+      <div class="social-icons">
+        <a href="https://www.instagram.com/redesign_canvas?igsh=MXN1Z3kzMWk1ZGg0aQ==" target="_blank" aria-label="Redesign Canvas on Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.linkedin.com/company/redesign-canvas/" target="_blank" aria-label="Redesign Canvas on LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://youtube.com/@redesigncanvas?si=TOF8I1chZHX4aB9G" target="_blank" aria-label="Redesign Canvas on YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="section-footer" class="footer-section">
+  <div class="footer-branding">
+    <span class="brand-redesign">Redesign</span>
+    <span class="brand-canvas">Canvas</span>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const reveals = document.querySelectorAll(".work-reveal");
+
+    if (!("IntersectionObserver" in window)) {
+      reveals.forEach((item) => item.classList.add("visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    reveals.forEach((item) => observer.observe(item));
+  });
+</script>
+</body>
+</html>

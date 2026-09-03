@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redesign Canvas - Complete Website Content</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f9f9f9;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Cover Page */
+        .cover-page {
+            text-align: center;
+            padding: 100px 0;
+            border-bottom: 3px solid #000;
+            margin-bottom: 60px;
+            page-break-after: always;
+        }
+
+        .cover-page h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin: 30px 0;
+            letter-spacing: -1px;
+        }
+
+        .cover-page .subtitle {
+            font-size: 1.3em;
+            color: #666;
+            margin: 20px 0;
+            font-weight: 300;
+        }
+
+        .cover-page .tagline {
+            font-size: 1.1em;
+            color: #999;
+            margin-top: 40px;
+            font-style: italic;
+        }
+
+        /* Table of Contents */
+        .toc {
+            page-break-after: always;
+            margin-bottom: 60px;
+        }
+
+        .toc h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin: 12px 0;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .toc li a {
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px dotted #999;
+        }
+
+        /* Headings */
+        h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin: 40px 0 20px 0;
+            color: #000;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            font-weight: 600;
+            margin: 35px 0 15px 0;
+            color: #1a1a1a;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin: 25px 0 10px 0;
+            color: #2c2c2c;
+        }
+
+        h4 {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin: 18px 0 8px 0;
+            color: #3c3c3c;
+        }
+
+        /* Text Styles */
+        p {
+            margin: 15px 0;
+            text-align: justify;
+            color: #444;
+        }
+
+        strong {
+            font-weight: 600;
+            color: #000;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin: 8px 0;
+            color: #444;
+        }
+
+        /* Page Section */
+        .page-section {
+            margin-bottom: 80px;
+            page-break-inside: avoid;
+        }
+
+        .page-section:first-of-type {
+            page-break-after: always;
+        }
+
+        /* Section Headers */
+        .section-header {
+            background: #f0f0f0;
+            padding: 20px;
+            margin: -50px -50px 30px -50px;
+            border-left: 5px solid #000;
+        }
+
+        .section-header h1 {
+            margin: 0;
+            font-size: 2.2em;
+        }
+
+        .section-header p {
+            margin: 8px 0 0 0;
+            font-size: 0.95em;
+            color: #666;
+        }
+
+        /* Content Boxes */
+        .content-box {
+            background: #fafafa;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 4px solid #333;
+            border-radius: 2px;
+        }
+
+        .content-box h4 {
+            margin-top: 0;
+            color: #000;
+        }
+
+        /* Team Grid */
+        .team-member {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 3px;
+        }
+
+        .team-member h4 {
+            color: #000;
+            margin: 0 0 5px 0;
+        }
+
+        .team-member .role {
+            font-weight: 600;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .team-member .bio {
+            margin-top: 8px;
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        /* Expertise Grid */
+        .expertise-item {
+            margin: 25px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-left: 3px solid #000;
+        }
+
+        .expertise-item h4 {
+            margin: 0 0 10px 0;
+            color: #000;
+        }
+
+        .expertise-item p {
+            margin: 10px 0;
+            font-style: italic;
+            color: #666;
+        }
+
+        .expertise-item ul {
+            margin: 10px 0 0 20px;
+        }
+
+        .expertise-item li {
+            margin: 5px 0;
+            font-size: 0.95em;
+        }
+
+        /* Work Project */
+        .project {
+            margin: 40px 0;
+            padding: 30px;
+            background: #fafafa;
+            border-radius: 3px;
+        }
+
+        .project h3 {
+            margin-top: 0;
+            color: #000;
+            font-size: 1.5em;
+        }
+
+        .project-meta {
+            font-size: 0.95em;
+            color: #999;
+            margin: 10px 0 20px 0;
+        }
+
+        /* Testimonials */
+        .testimonial {
+            margin: 25px 0;
+            padding: 20px;
+            background: #f0f0f0;
+            border-left: 4px solid #000;
+            font-style: italic;
+            color: #555;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            font-style: normal;
+            color: #000;
+            margin-top: 12px;
+        }
+
+        .testimonial-title {
+            font-size: 0.9em;
+            color: #888;
+            font-style: normal;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: #f5f5f5;
+            padding: 30px;
+            border-radius: 3px;
+            margin: 30px 0;
+        }
+
+        .contact-info h3 {
+            margin-top: 0;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+            font-size: 1.05em;
+        }
+
+        .contact-info a {
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid #000;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+                overflow-wrap: anywhere;
+            }
+
+            .section-header {
+                margin-left: -20px;
+                margin-right: -20px;
+            }
+
+            .cover-page h1 {
+                font-size: 2.8em;
+            }
+
+            .contact-info a {
+                overflow-wrap: anywhere;
+            }
+        }
+
+        /* Page Break */
+        .page-break {
+            page-break-after: always;
+            margin: 60px 0;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                max-width: 100%;
+                box-shadow: none;
+                padding: 40px;
+            }
+
+            h1, h2 {
+                page-break-after: avoid;
+            }
+
+            .page-section {
+                page-break-inside: avoid;
+            }
+
+            .project {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- COVER PAGE -->
+        <div class="cover-page">
+            <h1>REDESIGN CANVAS</h1>
+            <p class="subtitle">Complete Website Content Guide</p>
+            <p class="tagline">A communication and design studio creating branding, campaigns, and social impact storytelling</p>
+            <p style="margin-top: 80px; font-size: 0.95em; color: #999;">Content Documentation | May 2026</p>
+        </div>
+
+        <!-- TABLE OF CONTENTS -->
+        <div class="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><strong>1. Homepage</strong></li>
+                <li><strong>2. About Page</strong></li>
+                <li><strong>3. Our Work (Portfolio)</strong></li>
+                <li><strong>4. Featured Projects</strong></li>
+                <li style="margin-left: 20px;">• AAha Foundation</li>
+                <li style="margin-left: 20px;">• Documentaries</li>
+                <li style="margin-left: 20px;">• Nagai Book Fair</li>
+                <li style="margin-left: 20px;">• Art Academy</li>
+                <li style="margin-left: 20px;">• Visual RK</li>
+                <li><strong>5. Team</strong></li>
+                <li><strong>6. Contact & Social</strong></li>
+            </ul>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- ========== HOMEPAGE ========== -->
+        <div class="page-section">
+            <div class="section-header">
+                <h1>Homepage</h1>
+                <p>URL: index.html</p>
+            </div>
+
+            <!-- HERO SECTION -->
+            <div class="content-box">
+                <h4>Hero Section</h4>
+                <h3>Born in India, Built for the World</h3>
+                <p><strong>Tagline:</strong> A Studio Redefining Design for Change</p>
+                <p><strong>Supporting Text:</strong> Turning design into identities that people remember</p>
+                <p><strong>Description:</strong> Redesign Canvas is a global communication and design studio that transforms ideas into powerful stories, experiences, and identities that move people.</p>
+            </div>
+
+            <!-- INTRO SECTION -->
+            <div class="content-box">
+                <h4>Intro Section</h4>
+                <h3>India's Dedicated</h3>
+                <p><strong>Key Message:</strong> SOCIAL CHANGE DESIGN STUDIO</p>
+            </div>
+
+            <!-- ABOUT SECTION -->
+            <div class="content-box">
+                <h4>About Section</h4>
+                <h3>Our Core Pillars</h3>
+                <ul>
+                    <li><strong>Discover</strong></li>
+                    <li><strong>Design</strong></li>
+                    <li><strong>Deliver</strong></li>
+                </ul>
+                <p><strong>Mission Statement:</strong></p>
+                <p>Redesign Canvas is a global communication and design studio that transforms ideas into powerful stories, experiences, and identities that move people. We collaborate with brands, governments, institutions, and communities to craft narratives that connect purpose with people.</p>
+                <p><strong>CTA Button:</strong> Explore What we do</p>
+            </div>
+
+            <!-- FEATURED WORK SECTION -->
+            <div class="content-box">
+                <h4>Featured Work Section</h4>
+                <h3>Featured Work</h3>
+                <p>Showcases four main projects with descriptions:</p>
+                <ul>
+                    <li><strong>AAha Foundation</strong> - Branding & Campaign (50% reach achievement)</li>
+                    <li><strong>Nagai Book Fair</strong> - Reading movement (50% reach achievement)</li>
+                    <li><strong>Documentaries</strong> - Photography (State-level reach, 50% performance metric)</li>
+                </ul>
+            </div>
+
+            <!-- PARTNERS SECTION -->
+            <div class="content-box">
+                <h4>Partners & Clients</h4>
+                <h3>Words From Our Partners</h3>
+                <p>Featured partner organizations include:</p>
+                <ul>
+                    <li>Tamil Nadu Government</li>
+                    <li>DEEP</li>
+                    <li>AAha Foundation</li>
+                    <li>Art Academy</li>
+                    <li>NTPC</li>
+                    <li>Prasthara</li>
+                    <li>Book Fair</li>
+                    <li>Dindigul District Administration</li>
+                </ul>
+            </div>
+
+            <!-- TESTIMONIALS SECTION -->
+            <div class="content-box">
+                <h4>Testimonials</h4>
+
+                <div class="testimonial">
+                    <p>"We watched a promotional video on Nagapattinam that beautifully captured the district's pride and legacy."</p>
+                    <div class="testimonial-author">Anbil Mahesh Poyyamozhi</div>
+                    <div class="testimonial-title">Hon'ble Education Minister</div>
+                </div>
+
+                <div class="testimonial">
+                    <p>"The initiative demonstrated clarity, cultural sensitivity, and a strong connection with the people."</p>
+                    <div class="testimonial-author">Erode Mahesh</div>
+                    <div class="testimonial-title">Writer & Social Activist</div>
+                </div>
+            </div>
+
+            <!-- INSIGHTS SECTION -->
+            <div class="content-box">
+                <h4>Insights From Us</h4>
+                <h3>Insights from US</h3>
+                <ul>
+                    <li><strong>Where Communication Sparks Change</strong> - Designing clarity in a complex society.</li>
+                    <li><strong>Thinking for a Better World</strong> - Perspectives on social change, culture, and human-centered communication.</li>
+                    <li><strong>Ideas that move people - and society</strong> - Explorations in strategy, design, and behaviour change.</li>
+                    <li><strong>Clarity for Complex Challenges</strong> - Understanding people, systems, and communication for impact.</li>
+                </ul>
+            </div>
+
+            <!-- CONTACT SECTION -->
+            <div class="contact-info">
+                <h3>Contact & Connect</h3>
+                <p><strong>Email:</strong> <a href="mailto:connect@redesigncanvas.com">connect@redesigncanvas.com</a></p>
+                <p><strong>Social Media:</strong></p>
+                <ul>
+                    <li>Instagram: @redesign_canvas</li>
+                    <li>LinkedIn: Redesign Canvas</li>
+                    <li>YouTube: @redesigncanvas</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- ========== ABOUT PAGE ========== -->
+        <div class="page-section">
+            <div class="section-header">
+                <h1>About Page</h1>
+                <p>URL: About.html</p>
+            </div>
+
+            <!-- HERO SECTION -->
+            <div class="content-box">
+                <h4>Hero Section</h4>
+                <p>We blend <strong>storytelling</strong>, <strong>design</strong>, and <strong>strategy</strong> to help brands and organisations to inspire people, shape culture, and drive meaningful impact. We collaborate with brands, governments, institutions, and communities to craft <strong>narratives</strong> that connect purpose with people. With the fusion of <strong>creativity</strong>, <strong>strategy</strong>, and <strong>empathy</strong>, we design communication that brings ideas to life - merging <strong>human-centred design</strong> with social and behavioural insight to shape messages that inspire and drive impact.</p>
+            </div>
+
+            <!-- IMAGE OVERLAY SECTION -->
+            <div class="content-box">
+                <h4>Key Message</h4>
+                <h3>BORN IN INDIA, BUILT FOR THE WORLD</h3>
+            </div>
+
+            <!-- THE REDESIGN WAY SECTION -->
+            <div class="content-box">
+                <h4>The Redesign Way</h4>
+                <h3>Communication-Driven Media Strategy / Integrated Design</h3>
+                <p>We work closely with diverse partners to understand their unique goals and audiences, using our <strong>D3 three-step approach</strong>:</p>
+
+                <div style="margin: 20px 0;">
+                    <h4>Step 1: Discover</h4>
+                    <p>We start by listening — understanding your mission, audience, and the change you want to drive.</p>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <h4>Step 2: Design</h4>
+                    <p>We translate insights into purposeful stories, visuals, and strategies that reflect your vision.</p>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <h4>Step 3: Deliver</h4>
+                    <p>We refine and launch communications that connect, inspire, and move people to action.</p>
+                </div>
+            </div>
+
+            <!-- EXPERTISE SECTION -->
+            <div class="content-box">
+                <h4>Expertise & Services</h4>
+                <h3>Our Specialized Studios</h3>
+
+                <div class="expertise-item">
+                    <h4>Brand Impact Studio</h4>
+                    <p>Crafting stories and identities that make brands unforgettable</p>
+                    <ul>
+                        <li>Brand storytelling & identity design</li>
+                        <li>Messaging frameworks & communication</li>
+                        <li>Visual systems & brand voice strategy</li>
+                        <li>Integrated outreach support</li>
+                    </ul>
+                </div>
+
+                <div class="expertise-item">
+                    <h4>Campaign Lab</h4>
+                    <p>We create and manage campaigns that move people, spark emotion, and drive action.</p>
+                    <ul>
+                        <li>Integrated campaign execution</li>
+                        <li>Audience targeting strategy</li>
+                        <li>Activation & storytelling assets</li>
+                        <li>Performance & outcome analysis</li>
+                    </ul>
+                </div>
+
+                <div class="expertise-item">
+                    <h4>Film & Content Studio</h4>
+                    <p>We tell stories that turn ideas into emotion and action.</p>
+                    <ul>
+                        <li>Short-form & long-form content</li>
+                        <li>Story scripting & pre-production</li>
+                        <li>Full film production pipeline</li>
+                        <li>Content distribution strategy</li>
+                    </ul>
+                </div>
+
+                <div class="expertise-item">
+                    <h4>Originals by Redesign</h4>
+                    <p>We bring powerful independent stories to life.</p>
+                    <ul>
+                        <li>Independent storytelling</li>
+                        <li>Social impact narratives</li>
+                        <li>Culture & community voices</li>
+                        <li>Multi-platform storytelling</li>
+                    </ul>
+                </div>
+
+                <div class="expertise-item">
+                    <h4>Learning & Strategy</h4>
+                    <p>We build creative capacity and strategic clarity.</p>
+                    <ul>
+                        <li>Creative workshops & training</li>
+                        <li>Brand & narrative strategy</li>
+                        <li>Organizational clarity programs</li>
+                        <li>Advisory & on-ground enablement</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="content-box">
+                <h3>Got a mission in mind?</h3>
+                <p>Let's bring it to life.</p>
+                <p><strong>CTA:</strong> Explore What we do</p>
+            </div>
+
+            <!-- TEAM SECTION -->
+            <div class="content-box">
+                <h4>Team</h4>
+                <h3>LOOK, Who is Redesigning</h3>
+                <p>Redesign Canvas is powered by a brilliant collective of designers, strategists, and storytellers united by creativity and purpose.</p>
+
+                <div class="team-member">
+                    <h4>Arun JS</h4>
+                    <div class="role">Founder & CEO</div>
+                    <div class="bio">Arun believes that communication is one of the most powerful tools for social change. Having spent years working at the grassroots level with NGOs, he's seen how stories, ideas, and visuals can influence minds and inspire action.</div>
+                </div>
+
+                <div class="team-member">
+                    <h4>Hari Krishnan</h4>
+                    <div class="role">COO</div>
+                    <div class="bio">For Harikrishnan, Redesign Canvas is more than a creative agency - it's a space to design for social change. He believes in shaping ideas that make a difference and takes pride in guiding the team to uphold that vision in every project, working toward a better tomorrow.</div>
+                </div>
+
+                <div class="team-member">
+                    <h4>Vasanth</h4>
+                    <div class="role">Content Creator</div>
+                    <div class="bio">Vasanth finds joy in shaping thoughts into words and ideas into stories. For him, creating content isn't just about writing - it's about thinking deeply, expressing freely, and connecting meaningfully. It's where creativity meets purpose, one story at a time.</div>
+                </div>
+
+                <div class="team-member">
+                    <h4>Abdul</h4>
+                    <div class="role">Web Developer & Designer</div>
+                    <div class="bio">Abdul brings together creativity and curiosity in everything he does. With a passion for building websites and designing visuals that stand out, he loves pushing boundaries—whether through sleek web layouts, fresh design experiments, or a bit of video editing magic. For him, every new project is a chance to learn, explore, and grow.</div>
+                </div>
+
+                <div class="team-member">
+                    <h4>Anbu</h4>
+                    <div class="role">Designer</div>
+                    <div class="bio">Anbu blends creativity and curiosity through his work in design and photography. He loves capturing moments that tell stories and bringing visual ideas to life through thoughtful design. Exploring new ideas and learning new techniques keep him inspired and evolving every day.</div>
+                </div>
+
+                <div class="team-member">
+                    <h4>Akanksha</h4>
+                    <div class="role">Content & Research</div>
+                    <div class="bio">Akanksha is a researcher, writer, and poet. A keen listener and storyteller, she finds inspiration in conversations with people she meets, weaving their narratives into her research and writing.</div>
+                </div>
+
+                <p style="margin-top: 25px; font-style: italic; color: #666;">Our team strength lies in freelancers, consultants, and specialists who join us project by project to create meaningful change.</p>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- ========== OUR WORK (PORTFOLIO) ========== -->
+        <div class="page-section">
+            <div class="section-header">
+                <h1>Our Work</h1>
+                <p>URL: Work.html</p>
+            </div>
+
+            <h2>Portfolio Overview</h2>
+            <p>At Redesign Canvas, we see our journey as just beginning. We want to keep using design and communication to bring people together, solve real problems, and tell stories that matter. Guided by a human-centered design and SBCC approach, we'll continue to listen, learn, and create ideas that connect deeply with the communities we work with.</p>
+
+            <div class="content-box">
+                <h4>Featured Projects</h4>
+                <ul>
+                    <li><strong>Aaha Foundation</strong> - Branding</li>
+                    <li><strong>Documentaries</strong> - Photography</li>
+                    <li><strong>Nagai Book Fair</strong> - A Reading Movement</li>
+                    <li><strong>Art Academy</strong> - Design</li>
+                    <li><strong>Visual RK</strong> - Design</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- ========== FEATURED PROJECTS ========== -->
+
+        <!-- PROJECT 1: AAHA FOUNDATION -->
+        <div class="page-section">
+            <div class="section-header">
+                <h1>Project: AAha Foundation</h1>
+                <p class="project-meta">Category: Branding & Campaign | URL: work-aaha.html</p>
+            </div>
+
+            <div class="project">
+                <h3>AAha Foundation</h3>
+                <p class="project-meta">Branding & Campaign Work</p>
+
+                <h4>Project Overview</h4>
+                <p>At Redesign Canvas, we see our journey as just beginning. We want to keep using design and communication to bring people together, solve real problems, and tell stories that matter. Guided by a human-centered design and SBCC approach, we'll continue to listen, learn, and create ideas that connect deeply with the communities we work with.</p>
+
+                <h4>Our Creative Process</h4>
+                <p>We work closely with communities to design meaningful, inclusive and impactful visual stories that connect deeply with people.</p>
+
+                <h4>Key Metrics</h4>
+                <ul>
+                    <li>Campaign achieved state-wide reach</li>
+                    <li>Featured in Mathrubhoomi</li>
+                    <li>50% reach achievement</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- PROJECT 2: DOCUMENTARIES -->
+        <div class="page-section">
+            <div class="section-header">
+                <h1>Project: Documentaries</h1>
+                <p class="project-meta">Category: Photography | URL: work-documentaries.html</p>
+            </div>
+
+            <div class="project">
+                <h3>Documentaries</h3>
+                <p class="project-meta">Photography & Documentary Work</p>
+
+                <h4>Project Overview</h4>
+                <p>At Redesign Canvas, we see our journey as just beginning. We want to keep using design and communication to bring people together, solve real problems, and tell stories that matter. Guided by a human-centered design and SBCC approach, we'll continue to listen, learn, and create ideas that connect deeply with the communities we work with.</p>
+
+                <h4>Key Focus</h4>
+                <ul>
+                    <li>Documentary photography</li>
+                    <li>Long-term public and institutional use</li>
+                    <li>Authentic visual storytelling</li>
+                    <li>State-level reach achieved</li>
+                    <li>50% performance metric</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- PROJECT 3: NAGAI BOOK FAIR -->
+        <div class="page-section">
+            <div class="section-header">
+                <h1>Project: Nagai Book Fair</h1>
+                <p class="project-meta">Category: A Reading Movement | URL: nagai-book-fair.html</p>
+            </div>
+
+            <div class="project">
+                <h3>Nagai Book Fair 2025</h3>
+                <p class="project-meta">A Reading Movement</p>
+
+                <h4>Project Overview</h4>
+                <p>The Nagai Book Fair is a vibrant celebration of reading, knowledge, and community engagement. Designed to inspire young minds and strengthen reading culture in Nagapattinam, the event brings together publishers, authors, educators, and book lovers under one roof. Through interactive sessions, cultural programs, and curated book collections, we aim to build a powerful literary movement.</p>
+
+                <h4>Our Initiative</h4>
+                <p>The Nagai Book Fair focuses on encouraging reading habits among students and the public. By creating an inclusive platform for publishers, writers, and readers, we foster intellectual growth, creativity, and lifelong learning within the community.</p>
+
+                <h4>Key Achievements</h4>
+                <ul>
+                    <li>Transformed campaign into a state-level reading movement</li>
+                    <li>Interactive sessions and cultural programs</li>
+                    <li>Community engagement and literacy promotion</li>
+                    <li>50% reach achievement</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- PROJECT 4: ART ACADEMY -->
+        <div class="page-section">
+            <div class="section-header">
+                <h1>Project: Art Academy</h1>
+                <p class="project-meta">Category: Design | URL: art-academy.html</p>
+            </div>
+
+            <div class="project">
+                <h3>Poonichierakadal Art Academy</h3>
+                <p class="project-meta">Branding & Design Work</p>
+
+                <h4>Project Overview</h4>
+                <p>We collaborated with Poonichierakadal Art Academy to redefine their brand identity and digital presence. Our focus was to elevate their positioning, strengthen visual storytelling, and create a strategy that helps increase painting sales while building a strong artistic community.</p>
+
+                <h4>Branding & Content Strategy</h4>
+                <p>We redesigned the academy's branding with a modern and artistic identity that reflects creativity and cultural depth. Our content strategy focused on:</p>
+                <ul>
+                    <li>Showcasing artworks and student achievements</li>
+                    <li>Behind-the-scenes process documentation</li>
+                    <li>Storytelling-driven campaigns</li>
+                    <li>Attracting collectors and art enthusiasts</li>
+                </ul>
+
+                <h4>Strategic Goals</h4>
+                <ul>
+                    <li>Brand identity elevation</li>
+                    <li>Digital presence strengthening</li>
+                    <li>Increase in painting sales</li>
+                    <li>Artistic community building</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- PROJECT 5: VISUAL RK -->
+        <div class="page-section">
+            <div class="section-header">
+                <h1>Project: Visual RK</h1>
+                <p class="project-meta">Category: Design | URL: event-poster.html</p>
+            </div>
+
+            <div class="project">
+                <h3>Visual RK - Event Poster Design</h3>
+                <p class="project-meta">Event-Focused Visual Communication</p>
+
+                <h4>Project Overview</h4>
+                <p>This project highlights a set of event-focused visual assets created to carry campaign messaging across print and digital touchpoints. The work balances bold poster design, legible hierarchy, and consistent storytelling so each asset feels connected while serving a distinct communication need.</p>
+
+                <h4>Poster Design System</h4>
+                <p>The layout system was built to keep information clear, visually engaging, and adaptable across multiple deliverables. Typography, imagery, and spacing were shaped to help each poster stay expressive while still feeling part of a cohesive campaign family.</p>
+
+                <h4>Key Design Principles</h4>
+                <ul>
+                    <li>Bold and expressive poster design</li>
+                    <li>Clear information hierarchy</li>
+                    <li>Adaptable across multiple formats</li>
+                    <li>Consistent storytelling</li>
+                    <li>Cohesive campaign family</li>
+                    <li>Print and digital optimization</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- ========== SUMMARY & CONTACT ========== -->
+        <div class="page-section">
+            <div class="section-header">
+                <h1>Contact & Social</h1>
+            </div>
+
+            <h2>Get In Touch</h2>
+
+            <div class="contact-info">
+                <h3>Connect With Redesign Canvas</h3>
+                <p><strong>Email:</strong> <a href="mailto:connect@redesigncanvas.com">connect@redesigncanvas.com</a></p>
+            </div>
+
+            <h3>Follow Us</h3>
+            <ul>
+                <li><strong>Instagram:</strong> @redesign_canvas - Primary social media platform</li>
+                <li><strong>LinkedIn:</strong> Redesign Canvas - Professional network and company updates</li>
+                <li><strong>YouTube:</strong> @redesigncanvas - Video content and project showcases</li>
+            </ul>
+
+            <h2>Brand Identity</h2>
+            <p><strong>Studio Name:</strong> Redesign Canvas</p>
+            <p><strong>Tagline:</strong> "Turning design into identities that people remember"</p>
+            <p><strong>Mission:</strong> A global communication and design studio that transforms ideas into powerful stories, experiences, and identities that move people.</p>
+
+            <h2>Service Areas</h2>
+            <ul>
+                <li>Brand Impact & Identity Design</li>
+                <li>Campaign Strategy & Execution</li>
+                <li>Content & Film Production</li>
+                <li>Social Impact Communication</li>
+                <li>Visual Storytelling</li>
+                <li>Strategy & Learning Programs</li>
+            </ul>
+        </div>
+
+        <!-- FOOTER -->
+        <div style="text-align: center; margin-top: 100px; padding-top: 30px; border-top: 2px solid #000; color: #999; font-size: 0.9em;">
+            <p>Redesign Canvas | Communication & Design Studio</p>
+            <p>Born in India, Built for the World</p>
+            <p style="margin-top: 20px; font-size: 0.85em;">Document generated from website content | Complete Reference Guide</p>
+        </div>
+    </div>
+</body>
+</html>

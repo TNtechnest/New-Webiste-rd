@@ -1,0 +1,37 @@
+.work-model-6 .g1 { grid-row:span 2; background:url('https://picsum.photos/600/400?20'); }
+.work-model-6 .g2 { background:url('https://picsum.photos/300/200?21'); }
+.work-model-6 .g3 { background:url('https://picsum.photos/300/200?22'); }
+.work-model-6 .g4 { background:url('https://picsum.photos/300/200?23'); }
+/* MODEL 1 */
+.work-model-1 .big { background: url('../../assets/images/site/Aaha_Foundation/coverpic.webp'); }
+.work-model-1 .small-top { background: url('../../assets/images/site/Aaha_Foundation/aaha poster where we are.webp'); }
+.work-model-1 .small-bottom:nth-child(3) { background: url('../../assets/images/site/Aaha_Foundation/aaha poster who we are.webp'); }
+  /* .work-model-1 .small-bottom:nth-child(4) { background: url('https://picsum.photos/300/200?4'); }
+  .work-model-1 .small-bottom:nth-child(5) { background: url('https://picsum.photos/300/200?5'); } */
+
+/* MODEL 2 */
+.work-model-2 .row { display: flex; gap: 12px; margin-bottom: 12px; }
+.work-model-2 .row div { flex:1; }
+.work-model-2 .row:nth-child(1) div:nth-child(1) { background:url('https://picsum.photos/300/200?6'); }
+.work-model-2 .row:nth-child(1) div:nth-child(2) { background:url('https://picsum.photos/300/200?7'); }
+.work-model-2 .row:nth-child(1) div:nth-child(3) { background:url('https://picsum.photos/300/200?8'); }
+.work-model-2 .row:nth-child(2) div:nth-child(1) { background:url('https://picsum.photos/300/200?9'); }
+.work-model-2 .row:nth-child(2) div:nth-child(2) { background:url('https://picsum.photos/300/200?10'); }
+.work-model-2 .row:nth-child(2) div:nth-child(3) { background:url('https://picsum.photos/300/200?11'); }
+
+/* MODEL 3 */
+.work-model-3 .hero { background:url('../../assets/images/site/Nagai_Book_Fair/Book fair promo video.webp'); margin-bottom:12px; }
+.work-model-3 .two { display:flex; gap:12px; }
+.work-model-3 .two div:nth-child(1) { background:url('https://picsum.photos/300/200?13'); }
+.work-model-3 .two div:nth-child(2) { background:url('https://picsum.photos/300/200?14'); }
+
+/* MODEL 4 */
+.work-model-4 { display:flex; gap:12px; }
+.work-model-4 .left { flex:2; background:url('https://picsum.photos/600/400?15'); }
+.work-model-4 .right { flex:1; display:flex; flex-direction:column; gap:12px; }
+.work-model-4 .right div:nth-child(1) { background:url('https://picsum.photos/300/200?16'); }
+.work-model-4 .right div:nth-child(2) { background:url('https://picsum.photos/300/200?17'); }
+
+/* MODEL 5 */
+.work-model-5 .top { background:url('https://picsum.photos/600/400?18'); margin-bottom:12px; }
+.work-model-5 .bottom { background:url('https://picsum.photos/600/400?19'); }

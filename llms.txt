@@ -1,0 +1,185 @@
+# Redesign Canvas
+
+Redesign Canvas is a communication and design studio based in India, serving brands, governments, institutions, NGOs, and communities through design, storytelling, campaigns, documentary work, and social impact communication.
+
+## Core Services
+
+- Brand storytelling and identity design
+- Campaign strategy and visual communication
+- Documentary photography and film-led storytelling
+- Social and behavioural change communication
+- Learning, creative workshops, and communication strategy
+
+## Important Pages
+
+- Home: https://redesigncanvas.com/
+- About: https://redesigncanvas.com/About.html
+- Work: https://redesigncanvas.com/Work.html
+- AAha Foundation: https://redesigncanvas.com/work-aaha.html
+- Documentaries: https://redesigncanvas.com/work-documentaries.html
+- Nagai Book Fair: https://redesigncanvas.com/nagai-book-fair.html
+- Art Academy: https://redesigncanvas.com/art-academy.html
+- Visual RK: https://redesigncanvas.com/event-poster.html
+
+## Contact
+
+- Email: connect@redesigncanvas.com
+- Instagram: https://www.instagram.com/redesign_canvas
+- LinkedIn: https://www.linkedin.com/company/redesign-canvas/
+- YouTube: https://youtube.com/@redesigncanvas
+<div class="work-item item-1">
+        <a href="pages/work-aaha.html" class="work-link">
+          <img src="assets/images/site/aa4/AAha_Foundation.webp" alt="Aaha Foundation project image">
+          <div class="work-text">
+            <h3>AAha Foundation</h3>
+            <p> Branding & Campaign </p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Item 2 : Small Image -->
+      <div class="work-item item-2">
+        <a href="pages/work-aaha.html" class="work-link">
+          <img src="assets/images/site/Aaha_Foundation/Theeppetti kolli.webp" alt="Project detail image">
+        </a>
+      </div>
+
+      <!-- Item 3 : Percentage Card -->
+      <div class="work-item item-3 card-item">
+        <a href="pages/work-aaha.html" class="work-link">
+          <p>
+            <strong>Redesign Canvas</strong> The campaign achieved state-wide reach and was featured in Mathrubhoomi <br> reach
+          </p>
+          <div class="percentage">50<span class="percent-sign">%</span></div>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- KMVS SECTION -->
+    <div class="kmvs-grid">
+
+      <div class="kmvs-card kmvs-card-1">
+        <a href="pages/nagai-book-fair.html" class="work-link">
+          <p>
+            <strong>Redesign Canvas</strong> transformed
+            the campaign to state level <br> reach
+          </p>
+        </a>
+      </div>
+
+      <div class="kmvs-card kmvs-card-2">
+        <a href="pages/nagai-book-fair.html" class="work-link">
+          <p>
+            <strong>Redesign Canvas</strong> transformed the campaign into a state-level reading movement.
+          </p>
+          <div class="kmvs-percentage">
+            50<span class="kmvs-percent-sign">%</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="kmvs-poster">
+        <a href="pages/nagai-book-fair.html" class="work-link">
+          <img src="assets/images/site/Nagai_Book_Fair/hero/1.webp" alt="KMVS branding posters">
+          <div class="kmvs-text">
+            <h3>Nagai Book Fair 2025 </h3>
+            <p>Reading movement</p>
+          </div>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- DOCUMENTARIES SECTION -->
+    <div class="doc-grid">
+
+      <div class="doc-image-box">
+        <a href="pages/work-documentaries.html" class="work-link">
+          <img src="assets/images/site/aa4/Documentaries.webp" alt="Documentaries">
+        </a>
+      </div >
+
+      <div class="doc-cards-column">
+
+        <div class="doc-card doc-card-top">
+          <a href="pages/work-documentaries.html" class="work-link">
+            <p>
+              <strong>Redesign Canvas</strong> transformed the campaign to state level <br> reach
+            </p>
+            <div class="doc-percent">50<span>%</span></div>
+          </a>
+        </div>
+
+        <div class="doc-card doc-card-bottom">
+          <a href="pages/work-documentaries.html" class="work-link">
+            <p>
+              <strong>Redesign Canvas</strong> Authentic documentary photography created for long-term public and institutional use <br> reach
+            </p>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="doc-explore">
+        <a href="pages/Work.html">Explore<br>Our Work</a>
+      </div>
+
+
+    <div class="doc-caption">
+      <a href="pages/work-documentaries.html" class="work-link">
+        <h3 class="doc-title">Documentaries</h3>
+        <p class="doc-subtitle">Photography</p>
+      </a>
+    </div>
+
+  </div>
+
+
+  
+
+<section id="section-about" class="about-section">
+  <div class="about-background">
+  <div class="container about-container">
+    
+    <div class="about-pillars">
+      <div class="pillar">Discover</div>
+      <div class="pillar">Design</div>
+      <div class="pillar">Deliver</div>
+    </div>
+    <p class="about-description">
+      Redesign Canvas is a global communication and design studio that transforms ideas into powerful stories, experiences, and identities that move people. We collaborate with brands, governments, institutions, and communities to craft narratives that connect purpose with people.
+    </p>
+  <a href="pages/About.html" class="about-cta">
+  <span class="cta-text">Explore What we do</span>
+</a>
+
+  </div>
+  </div>
+</section>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const cta = document.querySelector(".about-cta");
+  const textElement = document.querySelector(".cta-text");
+  const text = textElement.textContent;
+  textElement.textContent = "";
+
+  text.split("").forEach((char, index) => {
+    const span = document.createElement("span");
+    span.classList.add("letter");
+    span.style.animationDelay = `${index * 0.05}s`;
+    span.innerHTML = char === " " ? "&nbsp;" : char;
+    textElement.appendChild(span);
+  });
+
+  // 🔥 Add intro animation class
+  cta.classList.add("animate");
+
+  // Remove animation class after animation ends
+  setTimeout(() => {
+    cta.classList.remove("animate");
+  }, 1500);
+
+});
+</script>
